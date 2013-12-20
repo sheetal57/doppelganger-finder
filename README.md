@@ -22,6 +22,7 @@ Example:
 Algorithm:
 
 Let, A = set of users in a dataset
+
 Calculate probability for every pair of users in A
 
 2.a. For a user Ai in A:
