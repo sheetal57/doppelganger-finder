@@ -18,3 +18,25 @@ MODEL_DIR is the directory where the classifiers will be saved for future use.
 Example:
 
     python doppelganger_finder.py -i ../example/100-test-all.arff -o ../example/result.csv -s ../example/models/
+
+Algorithm:
+
+Let, A = set of users in a dataset
+Calculate probability for every pair of users in A
+
+2.a. For a user Ai in A:
+
+       C <- classifier trained of all users in A except Ai
+       R <- Test C using Ai and get the probability scores of Ai's document written by other users in A
+       for an author Aj in R:
+           p[Ai][Aj] = probability of Ai's document was written by Aj
+Calculate combined pairwise probability
+
+3.a For Ai, Aj in A:
+
+      p[Ai][Aj] = probability of Ai's document was written by Aj
+      p[Aj][Ai] = probability of Aj's document was written by Ai
+      p[Ai==Aj] = Ai and Aj are the same author = p[Ai][Aj] * p[Aj][Ai]
+      Ai, Aj are likely to be same person if p[Ai==Aj] is high.
+      
+Output p[Ai==Aj] for every pair of author Ai and Aj in A.
